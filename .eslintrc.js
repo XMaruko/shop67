@@ -21,6 +21,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    "space-before-function-paren": ["error", "never"],
     "skipBlankLines": true ,
     "ignoreComments": true,
     // allow async-await
