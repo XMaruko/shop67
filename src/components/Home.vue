@@ -5,7 +5,7 @@
         <img src="../assets/img/heima.png" alt>
         <span>电商后台管理系统</span>
       </div>
-      <el-button type="info">退出</el-button>
+      <el-button type="info" @click="logout()">退出</el-button>
     </el-header>
     <el-container>
       <el-aside :width="isshow?'65px':'200px'">
@@ -33,14 +33,14 @@
               v-for="item2 in item.children"
               :key="item2.id"
             >
-            <i class="el-icon-menu"></i>
-            <span>{{ item2.authName }}</span>
+              <i class="el-icon-menu"></i>
+              <span>{{ item2.authName }}</span>
             </el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
       <el-main>
-          <router-view />
+        <router-view/>
       </el-main>
     </el-container>
   </el-container>
@@ -52,6 +52,18 @@ export default {
     this.getMenuList()
   },
   methods: {
+    logout() {
+      this.$confirm('确认要退出系统么？', '退出', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          window.sessionStorage.removeItem('token')
+          this.$router.push('/login')
+        })
+        .catch(() => {})
+    },
     // (axios)获得左侧导航数据信息
     async getMenuList() {
       const { data: dt } = await this.$http.get('/menus')
