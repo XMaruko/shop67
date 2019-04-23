@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Welcome from '@/components/Welcome'
+import User from '@/components/User'
 
 Vue.use(Router)
 
@@ -23,7 +24,11 @@ const router = new Router({
       path: '/home',
       component: Home,
       redirect: '/welcome',
-      children: [{ path: '/welcome', component: Welcome }]
+      children: [
+        { path: '/welcome', component: Welcome },
+        // path的路由信息已经通过左侧按钮数据获得回来了
+        { path: '/users', component: User }
+      ]
     }
   ]
 })
