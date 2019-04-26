@@ -68,7 +68,7 @@ export default {
     // (axios)获得左侧导航数据信息
     async getMenuList() {
       const { data: dt } = await this.$http.get('/menus')
-      console.log(dt)
+      // console.log(dt)
       if (dt.meta.status !== 200) {
         return this.$message.error(dt.meta.msg)
       }
